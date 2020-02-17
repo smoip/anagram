@@ -1,22 +1,26 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <Anagram/>
   </div>
 </template>
 
 <script>
+import Anagram from './components/anagram.vue'
 export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
+  name: 'anagram',
+  components: {
+    Anagram
   }
 }
 </script>
 
-<style scoped>
-p {
-  font-size: 2em;
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
