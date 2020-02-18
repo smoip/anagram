@@ -6,6 +6,6 @@ seed_text
   .squish
   .split(" ")
   .each do |text|
-    Word.create(text: text)
+    Word.create(text: text, text_length: text.length)
   end
 
