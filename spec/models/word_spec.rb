@@ -3,15 +3,17 @@ require "rails_helper"
 RSpec.describe Word, type: :model do
   describe "validations" do
     describe "text length" do
-      context "less than four characters" do
+      min_length = described_class::MINIMUM_LENGTH
+
+      context "less than #{min_length} characters" do
         it "is invalid" do
-          expect(build(:word, text: "hi")).to be_invalid
+          expect(build(:word, text: "a" * (min_length - 1))).to be_invalid
         end
       end
 
-      context "four or more characters" do
+      context "#{min_length} or more characters" do
         it "is valid" do
-          expect(build(:word, text: "flop")).to be_valid
+          expect(build(:word, text: "a" * min_length)).to be_valid
         end
       end
     end

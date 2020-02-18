@@ -1,5 +1,7 @@
 class Word < ApplicationRecord
-  validates :text, length: { minimum: 4 }
+  MINIMUM_LENGTH = 4
+
+  validates :text, length: { minimum: MINIMUM_LENGTH }
   validate :only_alpha
 
   private
