@@ -1,8 +1,11 @@
 class Word < ApplicationRecord
-  MINIMUM_LENGTH = 4
+  MINIMUM_LENGTH = 3
+  MINIMUM_BASE_LENGTH = 5
 
   validates :text, length: { minimum: MINIMUM_LENGTH }
   validate :only_alpha
+
+  scope :play_length, -> { where("LENGTH(text) >= ?", MINIMUM_BASE_LENGTH) } 
 
   private
 

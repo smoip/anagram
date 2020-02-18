@@ -12,6 +12,6 @@ class WordsController < ApplicationController
   private
 
   def word
-    Word.all.sample
+    Word.play_length.sample
   end
 end

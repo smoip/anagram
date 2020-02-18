@@ -33,4 +33,16 @@ RSpec.describe Word, type: :model do
       end
     end
   end
+
+  describe "scopes" do
+    describe ".play_length" do
+      min_play_length = described_class::MINIMUM_BASE_LENGTH
+      let!(:playable) { create(:word, text: "a" * min_play_length) }
+      let!(:not_playable) { create(:word, text: "a" * (min_play_length - 1)) }
+
+      it "excludes words with text less than #{min_play_length}" do
+        expect(described_class.play_length).to contain_exactly(playable)
+      end
+    end
+  end
 end
