@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_02_18_000131) do
     t.string "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["text"], name: "index_words_on_text"
   end
 
 end

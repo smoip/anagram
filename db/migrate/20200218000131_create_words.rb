@@ -4,5 +4,6 @@ class CreateWords < ActiveRecord::Migration[6.0]
       t.string :text, null: false, unique: true
       t.timestamps
     end
+    add_index :words, :text
   end
 end
