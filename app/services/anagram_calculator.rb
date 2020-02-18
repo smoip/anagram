@@ -21,18 +21,21 @@ class AnagramCalculator
   end
 
   def calculate
-    persisted, unknown = permutations
-      .reject { |permutation| permutation == word.text }
-      .partition { |permutation| Word.where(text: permutation).present? }
+    deduped_permutations = permutations.reject { |permutation| permutation == word.text }
+    persisted = Word.where(
+      text: deduped_permutations,
+    ).pluck(:text)
+
+    unknown = deduped_permutations - persisted
 
     new_additions = unknown
       .select { |permutation| WordLookup.execute(text: permutation).success? }
 
-    persisted + new_additions
+    Set.new(persisted + new_additions)
   end
 
   def permutations
-    (Word::MINIMUM_LENGTH..word.text.length).map do |perm_length|
+    (min_permutation_length..word.text.length).map do |perm_length|
       word
         .text
         .chars
@@ -45,5 +48,11 @@ class AnagramCalculator
 
   def success?
     @anagrams.length >= MINIMUM_ANAGRAM_COUNT
+  end
+
+  private
+
+  def min_permutation_length
+    Word::MINIMUM_LENGTH - 1
   end
 end
