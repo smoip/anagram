@@ -3,15 +3,20 @@
     <div class="head-material">
       <h1>Anagram</h1>
       <p>
-        what up?
+        <Round/>
       </p>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
+import Round from './round.vue'
+
+export default {
   name: 'Anagram',
+  components: {
+    Round
+  },
 
   methods: {
   },
