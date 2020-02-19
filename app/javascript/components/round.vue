@@ -1,9 +1,10 @@
 <template>
   <div>
     <button @click="newRound" type="button" :disabled=isLoading>Start New Round!</button> 
-    {{ word }}
-    {{ anagrams }}
-    <AnagramInput :anagrams="this.anagrams" />
+    <div>
+      {{ word }}
+    </div>
+    <AnagramInput :anagrams="this.anagrams" ref="anagramComp"/>
   </div>
 </template>
 
@@ -24,6 +25,7 @@ export default {
         .then((resp) => {
             this.updateData(resp)
             this.loading = false
+            this.$refs.anagramComp.clear()
           }
         ) 
     },
