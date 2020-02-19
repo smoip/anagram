@@ -1,7 +1,9 @@
 <template>
   <div>
-    <button @click="newRound" type="button" :disabled=isLoading>Start New Round!</button> 
-    <div>
+    <button @click="newRound" type="button" :disabled=isLoading class="round-button">
+      new round
+    </button>
+    <div class="base-word">
       {{ word }}
     </div>
     <AnagramInput :anagrams="this.anagrams" ref="anagramComp"/>
@@ -23,13 +25,11 @@ export default {
       this.loading = true
       this.$http.get("/words/fetch_new.json")
         .then((resp) => {
-            this.updateData(resp)
-            this.loading = false
-            this.$refs.anagramComp.clear()
-          }
-        ) 
+          this.updateData(resp)
+          this.loading = false
+          this.$refs.anagramComp.clear()
+        })
     },
-
     updateData (response) {
       this.response = response.data
       this.word = response.data.data.attributes.original
@@ -53,3 +53,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .base-word {
+    padding: 5px;
+    font-size: 2em;
+  }
+  .round-button {
+    padding: 5px;
+    border-radius: 5px;
+  }
+</style>

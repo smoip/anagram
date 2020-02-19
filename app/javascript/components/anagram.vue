@@ -16,20 +16,6 @@ export default {
   name: 'Anagram',
   components: {
     Round
-  },
-
-  methods: {
-  },
-
-  created () {
-  },
-
-  computed: {
-  },
-
-  data () {
-    return {
-    }
   }
 }
 </script>

@@ -1,10 +1,7 @@
 <template>
   <div>
     <div>
-      <div class="guess-label">
-        Type Guesses Here:
-      </div>
-      <textarea v-model="rawGuesses"/>
+      <textarea v-model="rawGuesses" class="text-input"/>
     </div>
     <GuessList guessKind="correct" :guesses=correctGuesses />
     <GuessList guessKind="incorrect" :guesses=incorrectGuesses />
@@ -27,6 +24,14 @@ export default {
   methods: {
     clear () {
       this.rawGuesses = ""
+    },
+    reduceGuesses (guesses) {
+      let mapped = guesses.map(g => g.length)
+      return mapped.reduce(
+        (acc, cur) => {
+          return acc + cur
+        }, 0
+      )
     }
   },
   computed: {
@@ -42,20 +47,10 @@ export default {
       return uniqGuesses.filter(g => g != "")
     },
     currentPositive () {
-      let positive = this.correctGuesses.map(word => word.length)
-      return positive.reduce(
-        (acc, cur) => {
-          return acc + cur
-        }, 0
-      )
+      return this.reduceGuesses(this.correctGuesses)
     },
     currentNegative () {
-      let negative = this.incorrectGuesses.map(word => word.length)
-      return negative.reduce(
-        (acc, cur) => {
-          return acc + cur
-        }, 0
-      )
+      return this.reduceGuesses(this.incorrectGuesses)
     },
     currentScore () {
       return this.currentPositive - this.currentNegative
@@ -68,9 +63,13 @@ export default {
   }
 }
 </script>
-
 <style scoped>
-  .user-guesses {
-    font-weight: 50;
+  .text-input {
+    border-radius: 5px;
+    margin: 5px;
+    width: 50%;
+    font-size: 1.5em;
+    text-align: center;
+    resize: none;
   }
 </style>

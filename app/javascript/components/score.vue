@@ -17,8 +17,7 @@ export default {
 </script>
 
 <style scoped>
-  .current_score {
-    font-weight: 100;
-    color: #099602;
+  .current-score {
+    font-size: 2em;
   }
 </style>

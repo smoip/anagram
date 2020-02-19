@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4>{{ headerString }}</h4>
+    <div class="guess-header">{{ headerString }}</div>
     <div v-bind:class="{ correct: isCorrect, incorrect: isIncorrect }">{{ displayString }}</div>
   </div>
 </template>
@@ -47,9 +47,13 @@ export default {
 
 <style scoped>
   .correct {
-    color: green !important;
+    color: green;
   }
   .incorrect {
-    color: red !important;
+    color: red;
+  }
+  .guess-header {
+    padding: 5px;
+    font-size: 1.5em;
   }
 </style>
