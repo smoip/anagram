@@ -1,6 +1,6 @@
-seed_text = File.read("#{Rails.root}/db/seed_text.txt")
+seed_text = File.read("#{Rails.root}/db/seed.txt")
 seed_text
-  .gsub("\n", "")
+  .gsub("\n", " ")
   .downcase
   .gsub(/[^a-z]/, " ")
   .squish
