@@ -3,7 +3,7 @@
     <button @click="newRound" type="button" :disabled=isLoading>Start New Round!</button> 
     {{ word }}
     {{ anagrams }}
-    <AnagramInput/>
+    <AnagramInput :anagrams="this.anagrams" />
   </div>
 </template>
 

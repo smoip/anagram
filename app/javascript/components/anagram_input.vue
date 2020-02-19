@@ -1,13 +1,14 @@
 <template>
   <div>
-    <input v-model="guesses">
+    <textarea v-model="rawGuesses" label="Type Guesses Here:"/>
     <div class="user-guesses">
+      {{ guesses }}
       <div class="correct">
-        {{ guesses }}
+        {{ correctGuesses }}
       </div>
 
       <div class="incorrect">
-        {{ guesses }}
+        {{ incorrectGuesses }}
       </div>
     </div>
   </div>
@@ -15,11 +16,24 @@
 
 <script>
 export default {
+  props: [
+    'anagrams'
+  ],
+  computed: {
+    correctGuesses () {
+      return this.guesses.filter(f => this.anagrams.includes(f))
+    },
+    incorrectGuesses () {
+      return this.guesses.filter(f => !this.anagrams.includes(f))
+    },
+    guesses () {
+      let splitGuesses = new Set(this.rawGuesses.split(' '))
+      return [...splitGuesses]
+    }
+  },
   data () {
     return {
-      guesses: [],
-      correct: [],
-      incorrect: []
+      rawGuesses: ""
     }
   }
 }
