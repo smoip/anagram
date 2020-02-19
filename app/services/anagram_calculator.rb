@@ -21,17 +21,14 @@ class AnagramCalculator
   end
 
   def calculate
-    deduped_permutations = permutations.reject { |permutation| permutation == word.text }
-    persisted = Word.where(
-      text: deduped_permutations,
-    ).pluck(:text)
+    filtered_permutations = permutations
+      .reject { |permutation| permutation == word.text }
 
-    unknown = deduped_permutations - persisted
-
-    new_additions = unknown
-      .select { |permutation| WordLookup.execute(text: permutation).success? }
-
-    Set.new(persisted + new_additions)
+    Set.new(
+      Word.where(
+        text: filtered_permutations,
+      ).pluck(:text),
+    )
   end
 
   def permutations

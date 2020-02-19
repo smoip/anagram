@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe WordsController, type: :controller do
   describe "words#fetch_new" do
     let(:word) { create(:word, text: "plead") }
-    let(:anagram_list) { %w(lead plea ale) } # doesn't need to be real list since logic lives in service
+    let(:anagram_list) { %w(lead plea ale) }
 
     let(:service_response) do
       OpenStruct.new(
