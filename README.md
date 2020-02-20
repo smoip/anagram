@@ -16,6 +16,8 @@ Correct guesses increase score by the number of letters in the guess and incorre
 
 Clicking 'new round' resets the score and fetches a new word.
 
+> NOTE: the text input does not accept capital letters or line breaks at the moment
+
 ## Design Notes
 
 *Language/Framework:* 
